@@ -1,0 +1,15 @@
+Node3D
+AudioStreamPlayer3D
+Label
+Control
+Container
+TextureButton
+TextureRect
+HSlider
+Button
+Window
+Panel
+ColorRect
+MarginContainer
+VBoxContainer
+PanelContainer

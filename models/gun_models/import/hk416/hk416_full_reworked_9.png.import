@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://dkrgqd3ybtlxo"
+path.s3tc="res://.godot/imported/hk416_full_reworked_9.png-9cdd1d179357dde0a2a681e422f19b37.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "f512409765d534c4e2cd36cc889af4e9"
+}
+
+[deps]
+
+source_file="res://models/gun_models/import/hk416/hk416_full_reworked_9.png"
+dest_files=["res://.godot/imported/hk416_full_reworked_9.png-9cdd1d179357dde0a2a681e422f19b37.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

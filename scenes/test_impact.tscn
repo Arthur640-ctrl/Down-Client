@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://d4ip3gm8yqcco"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e53fe"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_btk3g"]
+material = SubResource("StandardMaterial3D_e53fe")
+radius = 0.1
+height = 0.2
+
+[node name="test_impact" type="MeshInstance3D"]
+mesh = SubResource("SphereMesh_btk3g")

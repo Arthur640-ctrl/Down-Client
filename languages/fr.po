@@ -1,0 +1,44 @@
+# LANGUAGE translation for Down for the following files:
+# res://scenes/settings.tscn
+#
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Down\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.6\n"
+
+#: scenes/settings.tscn
+msgid "SETTINGS_SECTION_TITLE"
+msgstr "Paramètres Principaux"
+
+#: scenes/settings.tscn
+msgid "SETTING_MAIN_LANGUAGE"
+msgstr "Language"
+
+#: scenes/settings.tscn
+msgid "NONE"
+msgstr "Nule"
+
+#: scenes/settings.tscn
+msgid "SETTING_MAIN_SYSTEM_ALERT"
+msgstr "Afficher les alertes système"
+
+#: scenes/settings.tscn
+msgid "<- SETTING_BUTTON_BACK"
+msgstr "Retour"
+
+msgid "SETTING_MAIN_SHOW_TUTORIAL"
+msgstr "Afficher les tutoriels / conseils de jeu"
+
+msgid "TEST_TEST"
+msgstr "Coao"

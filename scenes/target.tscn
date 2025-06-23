@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwayse6lgv2xq"]
+
+[ext_resource type="PackedScene" uid="uid://c6ifyfv3yt30g" path="res://scenes/weapons/guns/medieval_combat_dummy.glb" id="1_b37e2"]
+
+[node name="Sketchfab_Scene" instance=ExtResource("1_b37e2")]

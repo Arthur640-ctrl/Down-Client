@@ -1,0 +1,299 @@
+[gd_scene load_steps=16 format=3 uid="uid://jm836qd0g1un"]
+
+[ext_resource type="Script" uid="uid://cmsmcr1ee7h6h" path="res://scripts/ui_game/ui_game.gd" id="1_35xpy"]
+[ext_resource type="Script" uid="uid://baaqx7mo7iedw" path="res://scripts/ui_game/crosshair.gd" id="2_a7cbq"]
+[ext_resource type="Script" uid="uid://cxylthfix1w6d" path="res://scripts/utils/label.gd" id="3_y6wst"]
+[ext_resource type="Texture2D" uid="uid://41f3slx3okdd" path="res://models/inventory/empty_caseV5.png" id="4_64lfe"]
+[ext_resource type="Texture2D" uid="uid://b101ahlrjwmb0" path="res://models/inventory/rarity/traditionelle.png" id="6_ithtj"]
+[ext_resource type="Texture2D" uid="uid://cktvro16ycbkf" path="res://models/inventory/rarity/elite.png" id="7_rsqk5"]
+[ext_resource type="Texture2D" uid="uid://h40ilnc4xjtv" path="res://models/inventory/weapons/test.png" id="8_2qula"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_y6wst"]
+font_size = 20
+outline_size = 9
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2qula"]
+font_size = 51
+
+[sub_resource type="LabelSettings" id="LabelSettings_rsqk5"]
+font_size = 20
+outline_size = 9
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2n343"]
+font_size = 20
+outline_size = 9
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_v8d4b"]
+font_size = 20
+outline_size = 9
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_381rh"]
+font_size = 20
+outline_size = 9
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ws08y"]
+font_size = 20
+outline_size = 9
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_tspnc"]
+font_size = 20
+outline_size = 9
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Ui_game" type="Control" node_paths=PackedStringArray("RETICLE_LINES")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 73.0
+offset_top = -71.0
+offset_right = 73.0
+offset_bottom = -71.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_35xpy")
+RETICLE_LINES = [NodePath("Crosshair/Top"), NodePath("Crosshair/Right"), NodePath("Crosshair/Bottom"), NodePath("Crosshair/Left")]
+
+[node name="Crosshair" type="CenterContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -73.0
+offset_top = 71.0
+offset_right = -33.0
+offset_bottom = 111.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_a7cbq")
+
+[node name="Top" type="Line2D" parent="Crosshair"]
+points = PackedVector2Array(0, -5, 0, -15)
+width = 2.0
+
+[node name="Bottom" type="Line2D" parent="Crosshair"]
+points = PackedVector2Array(0, 15, 0, 5)
+width = 2.0
+
+[node name="Right" type="Line2D" parent="Crosshair"]
+points = PackedVector2Array(5, 0, 15, 0)
+width = 2.0
+
+[node name="Left" type="Line2D" parent="Crosshair"]
+points = PackedVector2Array(-5, 0, -15, 0)
+width = 2.0
+
+[node name="FPS" type="Label" parent="."]
+layout_mode = 1
+offset_left = -65.0
+offset_top = 79.0
+offset_right = -25.0
+offset_bottom = 111.0
+text = "e"
+label_settings = SubResource("LabelSettings_y6wst")
+script = ExtResource("3_y6wst")
+
+[node name="inventory" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="active" type="HBoxContainer" parent="inventory"]
+layout_mode = 2
+offset_left = -201.0
+offset_top = -1.0
+offset_right = -161.0
+offset_bottom = -1.0
+alignment = 1
+
+[node name="active_2" type="Sprite2D" parent="inventory/active"]
+position = Vector2(256, 0)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_64lfe")
+
+[node name="txt_active_2" type="TextureRect" parent="inventory/active/active_2"]
+offset_left = -500.0
+offset_top = -500.0
+offset_right = 500.0
+offset_bottom = 500.0
+texture = ExtResource("6_ithtj")
+
+[node name="wepon_active_2" type="TextureRect" parent="inventory/active/active_2"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="active_1" type="Sprite2D" parent="inventory/active"]
+position = Vector2(128, 0)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_64lfe")
+
+[node name="txt_active_1" type="TextureRect" parent="inventory/active/active_1"]
+offset_left = -500.0
+offset_top = -500.0
+offset_right = 500.0
+offset_bottom = 500.0
+texture = ExtResource("7_rsqk5")
+
+[node name="wepon_active_1" type="TextureRect" parent="inventory/active/active_1"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="active_0" type="Sprite2D" parent="inventory/active"]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_64lfe")
+
+[node name="txt_active_0" type="TextureRect" parent="inventory/active/active_0"]
+offset_left = -500.0
+offset_top = -500.0
+offset_right = 500.0
+offset_bottom = 500.0
+texture = ExtResource("7_rsqk5")
+
+[node name="wepon_active_0" type="TextureRect" parent="inventory/active/active_0"]
+offset_left = -500.0
+offset_top = -500.0
+offset_right = 524.0
+offset_bottom = 500.0
+texture = ExtResource("8_2qula")
+
+[node name="passive" type="HBoxContainer" parent="inventory"]
+layout_mode = 2
+offset_left = -201.0
+offset_top = -1.0
+offset_right = -201.0
+offset_bottom = -1.0
+
+[node name="passive_0" type="Sprite2D" parent="inventory/passive"]
+position = Vector2(-31, -103)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("4_64lfe")
+
+[node name="passive_1" type="Sprite2D" parent="inventory/passive"]
+position = Vector2(81, -103)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("4_64lfe")
+
+[node name="passive_2" type="Sprite2D" parent="inventory/passive"]
+position = Vector2(177, -103)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("4_64lfe")
+
+[node name="passive_3" type="Sprite2D" parent="inventory/passive"]
+position = Vector2(289, -103)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("4_64lfe")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -84.0
+offset_top = -55.0
+offset_right = -20.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="in_magazine" type="Label" parent="CanvasLayer/Control"]
+visible = false
+layout_mode = 0
+offset_left = -62.0
+offset_top = -42.0
+offset_right = -4.0
+offset_bottom = 28.0
+text = "12"
+label_settings = SubResource("LabelSettings_2qula")
+
+[node name="total" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -64.0
+offset_top = -6.0
+offset_right = -24.0
+offset_bottom = 17.0
+grow_horizontal = 0
+text = "/ 120"
+
+[node name="speed" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -65.0
+offset_top = 111.0
+offset_right = -18.0
+offset_bottom = 143.0
+text = "eeee"
+label_settings = SubResource("LabelSettings_rsqk5")
+
+[node name="running" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -65.0
+offset_top = 175.0
+offset_right = -25.0
+offset_bottom = 207.0
+text = "eeee"
+label_settings = SubResource("LabelSettings_2n343")
+
+[node name="croushed" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -65.0
+offset_top = 143.0
+offset_right = 64.0
+offset_bottom = 175.0
+text = "Crouched = false"
+label_settings = SubResource("LabelSettings_v8d4b")
+
+[node name="direction" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 247.0
+offset_top = 79.0
+offset_right = 287.0
+offset_bottom = 111.0
+text = "Direction : null"
+label_settings = SubResource("LabelSettings_381rh")
+
+[node name="blendspace" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 247.0
+offset_top = 111.0
+offset_right = 287.0
+offset_bottom = 143.0
+text = "eee"
+label_settings = SubResource("LabelSettings_ws08y")
+
+[node name="croushed_timsecale" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 247.0
+offset_top = 143.0
+offset_right = 287.0
+offset_bottom = 175.0
+text = "Crouched time scale : "
+label_settings = SubResource("LabelSettings_tspnc")
