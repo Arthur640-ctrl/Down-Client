@@ -41,7 +41,9 @@ func _process(_delta):
 						var stamina = infos.get("stamina", 100)
 						var health = infos.get("health", 100)
 						
-						var actual_item = infos.get("actual_item", 100002)
+						var actual_slot = infos.get("actual_slot", 0)
+						var inventory = infos.get("inventory", null)
+						
 
 						if pos != null and rot != null and cam_rot != null:
 							if pos.size() >= 3 and rot.size() >= 3 and cam_rot.size() >= 3:
@@ -64,7 +66,10 @@ func _process(_delta):
 									player.update_health(health)
 									Globals.stamina = stamina
 									Globals.health = health
-									Globals.actual_item = actual_item
+									Globals.actual_slot = int(actual_slot)
+									Globals.inventory = inventory
+									# print(Globals.actual_slot)
+									
 							else:
 								print("⚠️ pos, rot ou cam_rot ont moins de 3 éléments pour player ", pid)
 						else:

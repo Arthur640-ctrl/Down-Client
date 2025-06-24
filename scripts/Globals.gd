@@ -29,7 +29,7 @@ var new_infos = {
 	"camera_rotation": Vector3(0, 0, 0)
 }
 
-var actual_item = 100002
+var actual_slot = 0
 
 var player_id = ""
 var player_token = ""
@@ -45,6 +45,7 @@ var sens_x = 0.2
 var sens_y = 0.2
 var invert_y := false
 
+var inventory = null
 
 # ====================================
 var entities = {}
@@ -74,7 +75,7 @@ var settings = {
 		"sens_x_percent": "0.2",
 		"sens_y_percent": "0.2",
 		"reverse_y": "false",
-		"maintain_for_croushed": "false",
+		"maintain_for_croushed": "true",
 		"maintain_for_aiming": "false",
 		"controller_vibrations": "true",
 

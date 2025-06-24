@@ -48,7 +48,7 @@ func _process(delta: float) -> void:
 	
 	if not player.mvt_block:
 		if Input.is_action_pressed("aiming"):
-			$"../visuals/mixamo_base/Node/Skeleton3D/SkeletonIK3D".start()
+			$"../visuals/mixamo_base/Node/Skeleton3D/AimingIK".start()
 		else:
 			await get_tree().create_timer(0.2).timeout
-			$"../visuals/mixamo_base/Node/Skeleton3D/SkeletonIK3D".stop()
+			$"../visuals/mixamo_base/Node/Skeleton3D/AimingIK".stop()

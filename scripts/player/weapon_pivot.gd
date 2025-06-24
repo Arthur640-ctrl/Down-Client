@@ -30,7 +30,6 @@ func add_item(item_id: int):
 		reset()
 		var path = get_item_path(item_id)
 		
-		
 		if path != null:
 			var item = load(path)
 			var instance = item.instantiate()
@@ -44,8 +43,14 @@ func add_item(item_id: int):
 			actual = item_id
 
 func _process(delta: float) -> void:
-	if Globals.actual_item != 0:
-		add_item(Globals.actual_item)
+	if Globals.inventory != null:
+		if Globals.inventory["active"][int(Globals.actual_slot)]["item"] != null:
+			# print("Slot : ", int(Globals.actual_slot), "| Item Not null : ", int(Globals.inventory["active"][int(Globals.actual_slot)]["item"]))
+			add_item(int(Globals.inventory["active"][int(Globals.actual_slot)]["item"]))
+		else:
+			# print("Slot : ", int(Globals.actual_slot), "| Item null : ", Globals.inventory["active"][int(Globals.actual_slot)]["item"])
+			actual = 0
+			reset()
 
 	if Input.is_action_pressed("fire"):
 		if actual != 0:

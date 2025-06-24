@@ -32,7 +32,6 @@ var is_shooting = false
 @export var maintain_for_croushed = false
 @export var maintain_for_aiming = false
 var mvt_block = false
-var have_gun = true
 # =============
 var mouvement_transition = "parameters/mouvement/transition_request"
 var inMove_transition = "parameters/in_move/transition_request"
@@ -52,6 +51,12 @@ var crouched_blend_position := Vector2.ZERO
 var current_gun_blend := 1.0
 
 var blend_smooth = 8.0
+
+var items = {
+	100002: {
+		"type": "weapon",
+	}
+}
 # =============
 func _ready() -> void:
 	animation_tree.active = true
@@ -130,7 +135,7 @@ func get_inputs():
 			else:
 				is_aiming = false 
 				
-	# Update :
+	## Update :
 	Globals.IS_CROUSHED = is_croushed
 	Globals.IS_RUNNING = is_running
 	Globals.IS_JUMPING = is_jumping
@@ -163,7 +168,11 @@ func _physics_process(delta: float) -> void:
 	blend_space_vector = transform_input(input_dir)
 	
 
-	animation_tree[gunblend_blend2] = current_gun_blend
+	var current_blend = animation_tree[gunblend_blend2]
+	var target_blend = current_gun_blend
+	var blend_speed = 7.0  # Plus c'est grand, plus c'est rapide
+
+	animation_tree[gunblend_blend2] = lerp(current_blend, target_blend, blend_speed * delta)
 
 	# - Only if there are prediction (essential else the player don't work)
 	# Mouvements
@@ -231,21 +240,40 @@ func _physics_process(delta: float) -> void:
 	if Globals.PREDICTION:
 		move_and_slide()
 	
+	
 	# Other animations
-	if Globals.PREDICTION and have_gun:
+	if Globals.PREDICTION and have_gun():
+		current_gun_blend = 1.0
 		if Input.is_action_pressed("aiming"):
 			animation_tree[gunState_transition] = "aiming"
 		else:
 			animation_tree[gunState_transition] = "idle"
-			
 		if Input.is_action_pressed("fire"):
 			animation_tree["parameters/fire_genericRifle/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
-		
-
-
-
+	else:
+		if !have_gun():
+			current_gun_blend = 0.0
 func update_stamina(value):
 	ui_game.update_stamina(value)
 	
 func update_health(value):
 	ui_game.update_health(value)
+
+func have_gun():
+	if Globals.inventory == null:
+		return false
+
+	var slot := int(Globals.actual_slot)
+	var slot_data = Globals.inventory["active"][slot]
+	var item_id = slot_data["item"]
+	
+	if item_id != null:
+		item_id = int(item_id)
+	
+	if item_id == null:
+		return false
+	
+	if items.has(item_id) and items[item_id]["type"] == "weapon":
+		return true
+
+	return false

@@ -10,18 +10,18 @@ var weapons = {
 	}
 }
 
-func play_sound_use(item_id: int):
-	if item_id == 0:
-		return
+func play_sound_use(actual_slot: int):
+	
+	if Globals.inventory["active"][actual_slot]["item"]:
+		var item_id = int(Globals.inventory["active"][actual_slot]["item"])
 
-	if weapons[item_id]["type"] == "gun":
-		var stream = load(weapons[item_id]["shoot"])
-		audio_use.stop()
-		audio_use.stream = stream
-		audio_use.play()
+		if weapons.has(item_id) and weapons[item_id]["type"] == "gun":
+			var stream = load(weapons[item_id]["shoot"])
+			audio_use.stop()
+			audio_use.stream = stream
+			audio_use.play()
 
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("fire"):
-		if Globals.actual_item != 0:
-			play_sound_use(Globals.actual_item)
+		play_sound_use(Globals.actual_slot)

@@ -24,7 +24,6 @@ SettingsLoader="*res://scripts/utils/SettingsLoader.gd"
 
 [display]
 
-window/size/mode=1
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 

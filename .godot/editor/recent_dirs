@@ -1,9 +1,12 @@
+res://models
+res://scripts/player
+res://scripts/tests
+res://scripts/ui_game/inventory
 res://scripts/guns/utils
 res://models/anims/export
 res://scripts
 res://scripts/utils
 res://scripts/settings
-res://models
 res://languages
 res://scenes
 D:/BlockOut/languages
@@ -11,13 +14,10 @@ res://scripts/room
 res://export-server
 res://scripts/maps
 res://scripts/other_player
-res://scripts/player
 res://scripts/ui_game
-res://scripts/ui_game/inventory
 res://scripts/guns/stalker-47
 res://scenes/weapons/item
 res://
 res://models/anims
 res://scenes/weapons/guns
-res://scripts/tests
 C:/Users/g_e_o/Videos
