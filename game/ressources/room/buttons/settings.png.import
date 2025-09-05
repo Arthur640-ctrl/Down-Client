@@ -1,0 +1,14 @@
+[remap]
+
+importer="image"
+type="Image"
+uid="uid://b3kt6p150wqr4"
+path="res://.godot/imported/settings.png-e16e6abd8d39f8cd679edab083790829.image"
+
+[deps]
+
+source_file="res://game/ressources/room/buttons/settings.png"
+dest_files=["res://.godot/imported/settings.png-e16e6abd8d39f8cd679edab083790829.image"]
+
+[params]
+

@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://c1ikmse4yblp6"
+path.s3tc="res://.godot/imported/stairs_001_DiamondPlate008A_2K-JPG_Metalness-DiamondPlate008A_2K-JPG_Roughness.png-b037c6248dd8fc6d489714254948d34b.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "8f7e3a1b3e657e2ebb4e4a52511b9f9f"
+}
+
+[deps]
+
+source_file="res://game/prefabs/stairs/stair_001/stairs_001_DiamondPlate008A_2K-JPG_Metalness-DiamondPlate008A_2K-JPG_Roughness.png"
+dest_files=["res://.godot/imported/stairs_001_DiamondPlate008A_2K-JPG_Metalness-DiamondPlate008A_2K-JPG_Roughness.png-b037c6248dd8fc6d489714254948d34b.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://beop1f6g6hf5l"]
+
+[ext_resource type="PackedScene" uid="uid://dxj3b86i48mqc" path="res://game/assets/forTests/Mpsd.glb" id="1_0djas"]
+
+[node name="Mpsd" instance=ExtResource("1_0djas")]
+
+[node name="rightHand" type="Marker3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0276832)
+gizmo_extents = 0.1
+
+[node name="leftHand" type="Marker3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0111247, 0.051928)
+gizmo_extents = 0.1

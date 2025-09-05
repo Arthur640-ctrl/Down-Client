@@ -1,0 +1,14 @@
+[remap]
+
+importer="image"
+type="Image"
+uid="uid://d3i0ereaxiqbo"
+path="res://.godot/imported/btn_style.png-768aeefa8a2be6706144bd30806066ae.image"
+
+[deps]
+
+source_file="res://game/ressources/room/buttons/btn_style.png"
+dest_files=["res://.godot/imported/btn_style.png-768aeefa8a2be6706144bd30806066ae.image"]
+
+[params]
+

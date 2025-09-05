@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxbfcm54ik6vk"]
+
+[ext_resource type="Script" uid="uid://b7l2jkjpyb6ii" path="res://game/scripts/tests/ennemy_test.gd" id="1_7waic"]
+[ext_resource type="Script" uid="uid://dqw1am4opw3un" path="res://game/scripts/tests/csg_cylinder_3d.gd" id="2_614tr"]
+
+[node name="Ennemy" type="Node3D"]
+script = ExtResource("1_7waic")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+use_collision = true
+sides = 20
+script = ExtResource("2_614tr")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.39718, 0)
+use_collision = true
+size = Vector3(3, 0.2, 0.2)

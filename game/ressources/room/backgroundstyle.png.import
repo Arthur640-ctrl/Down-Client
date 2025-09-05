@@ -1,0 +1,14 @@
+[remap]
+
+importer="image"
+type="Image"
+uid="uid://chyb2vdwftgp5"
+path="res://.godot/imported/backgroundstyle.png-1deb817819c70d5cae3f6372c523837f.image"
+
+[deps]
+
+source_file="res://game/ressources/room/backgroundstyle.png"
+dest_files=["res://.godot/imported/backgroundstyle.png-1deb817819c70d5cae3f6372c523837f.image"]
+
+[params]
+

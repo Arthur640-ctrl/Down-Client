@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://by0aj726jkt41"
+path.s3tc="res://.godot/imported/500001_OpenGL.png-1f0d445f5b6c8762d43bb0d740954e41.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "6676ec14e1954f454270bc304f9d4a5b"
+}
+
+[deps]
+
+source_file="res://game/entities/models/500001_OpenGL.png"
+dest_files=["res://.godot/imported/500001_OpenGL.png-1f0d445f5b6c8762d43bb0d740954e41.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=1
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=1
+roughness/src_normal="res://entities/models/500001_OpenGL.png"
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0
