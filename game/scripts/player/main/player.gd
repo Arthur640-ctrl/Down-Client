@@ -51,6 +51,8 @@ var is_shooting : bool = false
 var is_reloading : bool = false
 var is_use_gadget : bool = false
 
+var alreday_land : bool = false
+
 var mouvement_transition : String = "parameters/mouvement/transition_request"
 var inMove_transition : String = "parameters/in_move/transition_request"
 var walking_blend2d : String = "parameters/walking/blend_position"
@@ -120,7 +122,7 @@ func transformInput(inputDirectionToTransform : Vector2):
 func get_inputs():
 	is_running = Input.is_action_pressed("run")
 	
-	is_shooting = Input.is_action_pressed("fire")
+	is_shooting = Input.is_action_pressed("use")
 	
 	is_reloading = Input.is_action_pressed("reload")
 	
@@ -155,7 +157,7 @@ func get_inputs():
 	# Update :
 	Globals.IS_CROUSHED = is_croushed
 	Globals.IS_RUNNING = is_running
-	Globals.IS_JUMPING = is_jumping
+	Globals.IS_JUMPING = Input.is_action_pressed("jump")
 	Globals.IS_SHOOTING = is_shooting
 	Globals.INV_UP = Input.is_action_just_pressed("inventory_up")
 	Globals.INV_DOWN = Input.is_action_just_pressed("inventory_down")
@@ -165,6 +167,7 @@ func get_inputs():
 	Globals.IS_USE_GADGET = is_use_gadget
 
 func _physics_process(delta: float) -> void:
+	var t = time_to_land()
 	# - Set to Globals
 	Globals.DELTA = delta
 	Globals.INPUT_DIR = inputDirection
@@ -209,13 +212,21 @@ func _physics_process(delta: float) -> void:
 			if !Globals.blocked:
 				animation_tree[isjumping_transition] = "on_floor"
 				$stairs.disabled = false
-		else:
-			
-			if !is_on_floor():
+				alreday_land = false
 				
-				animation_tree[isjumping_transition] = "jumping"
+		else:
 			velocity += get_gravity() * delta
 			$stairs.disabled = true
+			
+			
+			animation_tree[isjumping_transition] = "jumping"
+			
+			# TEST
+			
+			if !is_on_floor() and t <= 0.5 and !alreday_land and velocity.y < 0:
+				print("Play")
+				animation_tree["parameters/land/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+				alreday_land = true
 			
 		if direction and !Globals.blocked:
 			animation_tree[inMove_transition] = "moving"
@@ -262,6 +273,7 @@ func _physics_process(delta: float) -> void:
 	if Globals.PREDICTION and !Globals.blocked:
 		move_and_slide()
 
+
 func update_stamina(value):
 	ui_game.update_stamina(value)
 
@@ -271,3 +283,53 @@ func update_health(value):
 func str_to_bool(value: String) -> bool:
 	var normalized = value.strip_edges().to_lower()
 	return normalized in ["true", "1", "yes", "on"]
+	
+func time_to_land() -> float:
+	# Retourne le temps estimé avant de toucher le sol.
+	if is_on_floor():
+		return 0.0
+
+	# initialisation sûre
+	var dist: float = INF
+
+	# 1) essaye le RayCast 'floor_detection' s'il est dispo et colliding
+	if floor_detection and floor_detection.is_enabled() and floor_detection.is_colliding():
+		var hit_pos: Vector3 = floor_detection.get_collision_point()
+		dist = global_transform.origin.y - hit_pos.y
+		if dist <= 0.001:
+			return 0.0
+	else:
+		# 2) fallback : intersect_ray
+		var from = global_transform.origin
+		var to = from + Vector3.DOWN * 100.0
+		var space_state = get_world_3d().direct_space_state
+		var query = PhysicsRayQueryParameters3D.create(from, to)
+		query.exclude = [self]
+		var result = space_state.intersect_ray(query)
+		if not result:
+			return INF
+		dist = from.y - result.position.y
+		if dist <= 0.001:
+			return 0.0
+
+	# maintenant dist est bien défini (ou INF si pas trouvé)
+	if dist == INF:
+		return INF
+
+	# paramètres physiques
+	var g = float(ProjectSettings.get_setting("physics/3d/default_gravity")) # >0
+	var v = velocity.y # vy (positif = vers le haut)
+
+	# discriminant : v^2 + 2*g*dist
+	var discr = v * v + 2.0 * g * dist
+	if discr < 0.0:
+		return INF
+
+	var t = (v + sqrt(discr)) / g
+	if t <= 0.0:
+		return INF
+
+	# debug utile :
+	# print("t:", t, " dist:", dist, " vy:", v, " on floor:", is_on_floor(), " alreday_land:", alreday_land)
+
+	return t

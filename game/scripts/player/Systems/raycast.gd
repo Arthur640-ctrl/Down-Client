@@ -37,3 +37,31 @@ func detect_raycast(maximumReach: float, debugging: bool = false, maximumReachEn
 
 	# No collision or target not valid
 	return null
+
+func ray() -> Dictionary:
+	var result : Dictionary = {}
+	
+	if is_colliding():
+		var collider = get_collider()
+		var origin = global_transform.origin
+		var collision_point = get_collision_point()
+		var collision_normal = get_collision_normal()
+		var distance = origin.distance_to(collision_point)
+		
+		result = {
+			"collider": collider,
+			"origin": origin,
+			"point": collision_point,
+			"normal": collision_normal,
+			"distance": distance
+		}
+	else:
+		result = {
+			"collider": null,
+			"origin": global_transform.origin,
+			"point": null,
+			"normal": null,
+			"distance": null
+		}
+
+	return result

@@ -9,7 +9,8 @@ var entities_models = {
 	200001: preload("res://game/entities/scenes/200001.tscn"),
 	100001 : preload("res://game/entities/scenes/100001.tscn"),
 	500001: preload("res://game/entities/scenes/500001.tscn"),
-	999999: preload("res://game/entities/scenes/zone.tscn")
+	999999: preload("res://game/entities/scenes/zone.tscn"),
+	600000: preload("res://game/entities/scenes/600000.tscn"),
 }
 
 func entity_exists(ent_id: int) -> bool:
@@ -39,7 +40,7 @@ func _process(delta: float) -> void:
 		var ent_pos = Vector3(entitie["position"][0], entitie["position"][1], entitie["position"][2])
 		var ent_rot = Vector3(entitie["rotation"][0], entitie["rotation"][1], entitie["rotation"][2])
 		var ent_state = entitie["state"]
-
+		
 		server_actual_entities.append(ent_id)
 
 		if actual_entities_nodes.has(ent_id):
@@ -49,11 +50,19 @@ func _process(delta: float) -> void:
 			
 			actualize_states(ent_model, ent_state, node)
 		else:
+			if !entities_models.has(ent_model):
+				continue
+			
+			if ent_model == 600000:
+				var shooter = str(ent_state)
+				if shooter == str(Globals.player_id):
+					continue
+
 			var new_entitie = entities_models[ent_model].instantiate()
 			new_entitie.global_position = ent_pos
 			new_entitie.rotation_degrees = ent_rot
 			entities_node.add_child(new_entitie)
-	
+
 			actual_entities_nodes[ent_id] = new_entitie
 
 	for entitie in actual_entities_nodes:

@@ -2,7 +2,7 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://by0aj726jkt41"
+uid="uid://bqsluhuv24f32"
 path.s3tc="res://.godot/imported/500001_OpenGL.png-1f0d445f5b6c8762d43bb0d740954e41.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
@@ -28,7 +28,7 @@ compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=1
-roughness/src_normal="res://entities/models/500001_OpenGL.png"
+roughness/src_normal="res://game/entities/scenes/500001_OpenGL.png"
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

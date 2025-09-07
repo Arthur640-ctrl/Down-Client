@@ -1,0 +1,115 @@
+[gd_scene load_steps=22 format=3 uid="uid://bjfjx0rx72lxk"]
+
+[ext_resource type="Shader" uid="uid://bw25ndub7fsp4" path="res://game/env_test.tres" id="1_j8hai"]
+[ext_resource type="Texture2D" uid="uid://c3tsgpq3k48ho" path="res://game/textures/grids/Dark/texture_02.png" id="1_olreg"]
+[ext_resource type="Texture2D" uid="uid://b0ix63wbwwa05" path="res://game/assets/textures/noises/T_flare81.png" id="2_sht2e"]
+[ext_resource type="Shader" uid="uid://bq8louf8js3m3" path="res://game/env_test2.tres" id="3_ioj76"]
+[ext_resource type="Texture2D" uid="uid://d0esonf5cx1p5" path="res://game/assets/textures/noises/T_circle42.PNG" id="4_ouqbc"]
+[ext_resource type="Texture2D" uid="uid://rj6bmna2njlw" path="res://game/assets/textures/noises/T_groundmark_color.png" id="5_wb6mi"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4xma2"]
+render_priority = 0
+shader = ExtResource("1_j8hai")
+shader_parameter/Hit_Texture = ExtResource("2_sht2e")
+
+[sub_resource type="Curve" id="Curve_j8hai"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.504, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ioj76"]
+curve = SubResource("Curve_j8hai")
+
+[sub_resource type="Gradient" id="Gradient_ioj76"]
+colors = PackedColorArray(8, 0.8, 0, 1, 1, 0.5, 0.2, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ouqbc"]
+gradient = SubResource("Gradient_ioj76")
+use_hdr = true
+
+[sub_resource type="Curve" id="Curve_wb6mi"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_wb6mi"]
+curve = SubResource("Curve_wb6mi")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ioj76"]
+angle_min = -180.0
+angle_max = 180.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.8
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_wb6mi")
+color_ramp = SubResource("GradientTexture1D_ouqbc")
+alpha_curve = SubResource("CurveTexture_ioj76")
+
+[sub_resource type="QuadMesh" id="QuadMesh_ouqbc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3xkyx"]
+render_priority = 0
+shader = ExtResource("3_ioj76")
+shader_parameter/Hit_Texture = ExtResource("4_ouqbc")
+
+[sub_resource type="Curve" id="Curve_mnd6h"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_3xkyx"]
+curve = SubResource("Curve_mnd6h")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_j8hai"]
+particle_flag_align_y = true
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_min = 8.0
+initial_velocity_max = 12.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.3
+scale_max = 0.5
+color = Color(2.5, 2, 0.5, 1)
+alpha_curve = SubResource("CurveTexture_3xkyx")
+
+[sub_resource type="QuadMesh" id="QuadMesh_mnd6h"]
+size = Vector2(0.05, 0.3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mht2h"]
+albedo_texture = ExtResource("1_olreg")
+
+[node name="EnvTest" type="Node3D"]
+
+[node name="HIT_VFX" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13089, 0)
+
+[node name="Hit_Effect" type="GPUParticles3D" parent="HIT_VFX"]
+layers = 4
+material_override = SubResource("ShaderMaterial_4xma2")
+amount = 1
+lifetime = 0.25
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_ioj76")
+draw_pass_1 = SubResource("QuadMesh_ouqbc")
+
+[node name="Sparks" type="GPUParticles3D" parent="HIT_VFX"]
+material_override = SubResource("ShaderMaterial_3xkyx")
+lifetime = 0.25
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_j8hai")
+draw_pass_1 = SubResource("QuadMesh_mnd6h")
+
+[node name="Decal" type="Decal" parent="HIT_VFX"]
+texture_albedo = ExtResource("5_wb6mi")
+upper_fade = 0.00735548
+lower_fade = 0.0194112
+cull_mask = 1048571
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1.00062, 0, 0, 0, 1.00062, 0, 0, 0, 1.00062, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_mht2h")
+size = Vector3(10, 0.1, 10)
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.593303, 1.73937)
+material_override = SubResource("StandardMaterial3D_mht2h")
+radius = 1.155
+radial_segments = 100
+rings = 100

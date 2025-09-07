@@ -41,6 +41,9 @@ var cameraCrouchPosition = Vector3(0.7, -0.300, 1.563)
 var cameraCrouchFov = 50
 
 var headbobTime := 0.0
+
+var cameraTargetFov : int = 0
+var additionnalFov : int = 0
 # ============================
 # 🔁 Functions
 # ============================
@@ -62,10 +65,6 @@ func _input(event):
 			newXRotation = clamp(newXRotation, -90, 90)
 			rotation_degrees.x = newXRotation
 
-		# Apply server-authoritative rotation (Multiplayer)
-		if Globals.multiplayer:
-			rotation_degrees = Globals.new_infos["camera_rotation"]
-
 		# Choose between local test sensitivity and network production
 		var sensibilityHorizontalSend: float = 0
 		var sensibilityVerticalSend: float = 0
@@ -85,6 +84,10 @@ func _input(event):
 		}
 
 func _process(delta: float) -> void:
+	# Apply server-authoritative rotation (Multiplayer)
+	if Globals.multiplayer:
+		rotation_degrees = Globals.new_infos["camera_rotation"]
+	
 	# Activate this camera if it's set as the current one
 	camera.current = Globals.PLAYER_CAM_CURRENT
 
@@ -102,18 +105,18 @@ func _process(delta: float) -> void:
 
 	# Determine target position and FOV
 	var targetPosition = cameraIdlePosition
-	var targetFov = cameraIdleFov
+	cameraTargetFov = cameraIdleFov + additionnalFov
 
 	if Globals.IS_RUNNING and Globals.stamina > Globals.STAMINA_THRESHOLD and player.inputDirection == Vector2(0, -1):
 		targetPosition = cameraRunPosition
-		targetFov = cameraRunFov
+		cameraTargetFov = cameraRunFov
 	elif Globals.IS_CROUSHED:
 		targetPosition = cameraCrouchPosition
-		targetFov = cameraCrouchFov
+		cameraTargetFov = cameraCrouchFov
 
 	# Smoothly interpolate camera position and FOV
 	camera.position = camera.position.lerp(targetPosition, delta * lerpSpeed)
-	camera.fov = lerp(camera.fov, float(targetFov), delta * lerpSpeed)
+	camera.fov = lerp(camera.fov, float(cameraTargetFov), delta * lerpSpeed)
 	
 	# Set the headbobAmplitude and the headbobFrequency depending of the state of the player
 	if player.is_running and Globals.stamina > Globals.STAMINA_THRESHOLD:
