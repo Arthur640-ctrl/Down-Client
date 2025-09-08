@@ -194,7 +194,6 @@ func _physics_process(delta: float) -> void:
 	var current_blend = animation_tree[gunblend_blend2]
 	var target_blend = current_gun_blend
 	var blend_speed = 7.0
-	
 
 	animation_tree[gunblend_blend2] = lerp(current_blend, target_blend, blend_speed * delta)
 

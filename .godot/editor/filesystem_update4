@@ -1,17 +1,16 @@
-res://game/scenes/player.tscn
+res://game/scenes/settings.tscn
 res://game/shaders/gaz.gdshader
 res://game/shaders/600000.tres
 res://game/env_test.tres
 res://game/env_test2.tres
-res://game/scripts/player/main/player.gd
-res://game/assets/animations/used/ng_landing_f1.res
-res://game/scenes/settings.tscn
 res://game/scenes/salon.tscn
 res://game/scenes/main.tscn
 res://game/scenes/weapons/guns/100001.tscn
 res://gun test.tscn
+res://game/scenes/player.tscn
 res://game/entities/scenes/600000.tscn
 res://game/scenes/loading_screen.tscn
 res://game/env_test.tscn
 res://game/entities/scenes/area_3d.tscn
-res://game/assets/animations/used/ng_falling_idle.res
+res://game/scripts/player/visuals/gadget_visuals.gd
+res://game/scripts/player/main/player.gd
