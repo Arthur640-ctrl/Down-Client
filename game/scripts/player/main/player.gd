@@ -217,13 +217,12 @@ func _physics_process(delta: float) -> void:
 			velocity += get_gravity() * delta
 			$stairs.disabled = true
 			
-			
-			animation_tree[isjumping_transition] = "jumping"
+			if Globals.stamina > 10:
+				animation_tree[isjumping_transition] = "jumping"
 			
 			# TEST
 			
 			if !is_on_floor() and t <= 0.5 and !alreday_land and velocity.y < 0:
-				print("Play")
 				animation_tree["parameters/land/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 				alreday_land = true
 			
