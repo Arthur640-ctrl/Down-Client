@@ -1,11 +1,8 @@
 res://game/scenes/player.tscn
 res://game/shaders/gaz.gdshader
 res://game/shaders/600000.tres
-res://game/assets/animations/used/ng_crouched_idle.res
 res://game/env_test.tres
 res://game/env_test2.tres
-res://game/scenes/settings.tscn
-res://game/scenes/salon.tscn
-res://game/scenes/main.tscn
-res://game/scenes/weapons/guns/100001.tscn
-res://gun test.tscn
+res://game/assets/animations/used/ng_crouched_forward.res
+res://game/assets/animations/used/ng_crouched_left.res
+res://game/assets/animations/used/ng_crouched_right.res
