@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://d17qmef0y1o78"
-path="res://.godot/imported/ng_crouched_right.fbx-a215e852e5c8ce1efe9d31febd041cb0.scn"
+uid="uid://b2pgudre2vghk"
+path="res://.godot/imported/ng_crouched_idle.fbx-aba4167e3ba7811ceb4ba8e3121c9523.scn"
 
 [deps]
 
-source_file="res://game/assets/animations/imported/ng_crouched_right.fbx"
-dest_files=["res://.godot/imported/ng_crouched_right.fbx-a215e852e5c8ce1efe9d31febd041cb0.scn"]
+source_file="res://game/assets/animations/imported/ng_crouched_idle.fbx"
+dest_files=["res://.godot/imported/ng_crouched_idle.fbx-aba4167e3ba7811ceb4ba8e3121c9523.scn"]
 
 [params]
 
