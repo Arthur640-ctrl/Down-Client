@@ -3,8 +3,6 @@ res://game/shaders/gaz.gdshader
 res://game/shaders/600000.tres
 res://game/env_test.tres
 res://game/env_test2.tres
-res://game/assets/animations/used/ng_crouched_backward_left.res
-res://game/assets/animations/used/ng_crouched_backward_right.res
 res://game/scenes/settings.tscn
 res://game/scenes/salon.tscn
 res://game/scenes/main.tscn
