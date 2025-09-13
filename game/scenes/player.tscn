@@ -1,4 +1,4 @@
-[gd_scene load_steps=119 format=4 uid="uid://nnebbjsnmoeg"]
+[gd_scene load_steps=122 format=4 uid="uid://nnebbjsnmoeg"]
 
 [ext_resource type="Script" uid="uid://7rxdjq7rtuf0" path="res://game/scripts/player/main/player.gd" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://dfrl3h76bwwi8" path="res://game/scripts/player/Systems/weapon_pivot.gd" id="3_dt7fs"]
@@ -34,6 +34,7 @@
 [ext_resource type="Animation" uid="uid://rofohun17fwd" path="res://game/assets/animations/used/ng_crouched_backward_left.res" id="25_bqb45"]
 [ext_resource type="Animation" uid="uid://b6ob7grbjfqyp" path="res://game/assets/animations/used/ng_crouched_backward_right.res" id="26_aje1x"]
 [ext_resource type="Texture2D" uid="uid://t7xuy0exhxo0" path="res://game/assets/ui/inventory/slot_default.png" id="26_v774b"]
+[ext_resource type="Animation" uid="uid://dysvak80xxet4" path="res://game/assets/animations/used/ng_flip.res" id="27_n3dub"]
 [ext_resource type="Script" uid="uid://fpp0226bkwpf" path="res://game/scripts/ui/hud/inventoryManager.gd" id="28_ge23n"]
 [ext_resource type="Texture2D" uid="uid://51ya15kxh8bk" path="res://game/assets/ui/inventory/rarityCover/slot/1_primitif.png" id="29_fjcwx"]
 [ext_resource type="Texture2D" uid="uid://b8jq2njhjimri" path="res://game/assets/ui/inventory/slot_focused.png" id="30_eiiov"]
@@ -3190,6 +3191,7 @@ _data = {
 &"ng_crouched_left": ExtResource("20_508es"),
 &"ng_crouched_right": ExtResource("21_rgwld"),
 &"ng_falling_idle": ExtResource("19_xoqie"),
+&"ng_flip": ExtResource("27_n3dub"),
 &"ng_idle": ExtResource("16_wwdnv"),
 &"ng_landing_f1": ExtResource("18_wes05"),
 &"ng_running": SubResource("Animation_o4ke8"),
@@ -3217,6 +3219,9 @@ animation = &"ng_idle"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_aje1x"]
 animation = &"ng_crouched_idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t40wv"]
+animation = &"ng_flip"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_a1hud"]
 animation = &"ng_landing_f1"
@@ -3277,6 +3282,10 @@ blend_point_6/node = SubResource("AnimationNodeAnimation_qnag2")
 blend_point_6/pos = Vector2(1, 1)
 blend_point_7/node = SubResource("AnimationNodeAnimation_0q26w")
 blend_point_7/pos = Vector2(-1, 1)
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_utfn7"]
+fadein_time = 0.1
+fadeout_time = 0.1
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_a38lo"]
 filter_enabled = true
@@ -3401,7 +3410,7 @@ blend_point_7/node = SubResource("AnimationNodeAnimation_ge23n")
 blend_point_7/pos = Vector2(-1, 1)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_i4ail"]
-graph_offset = Vector2(-1308.43, -1034.85)
+graph_offset = Vector2(-521.126, -517.575)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_a1hud")
 nodes/Animation/position = Vector2(-300, -340)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_qs0sh")
@@ -3414,10 +3423,14 @@ nodes/Animation/position = Vector2(-300, -340)
 "nodes/Animation 5/position" = Vector2(-720, -280)
 "nodes/Animation 6/node" = SubResource("AnimationNodeAnimation_aje1x")
 "nodes/Animation 6/position" = Vector2(-702.138, 45.4879)
+"nodes/Animation 7/node" = SubResource("AnimationNodeAnimation_t40wv")
+"nodes/Animation 7/position" = Vector2(140, -240)
 nodes/attacment/node = SubResource("AnimationNodeTransition_yeae0")
 nodes/attacment/position = Vector2(220, 40)
 nodes/crouched/node = SubResource("AnimationNodeBlendSpace2D_t40wv")
 nodes/crouched/position = Vector2(-882.828, -753.153)
+nodes/double/node = SubResource("AnimationNodeOneShot_utfn7")
+nodes/double/position = Vector2(320, -640)
 nodes/gun_blend/node = SubResource("AnimationNodeBlend2_a38lo")
 nodes/gun_blend/position = Vector2(720, -40)
 nodes/idle_type/node = SubResource("AnimationNodeTransition_a8ls1")
@@ -3425,7 +3438,7 @@ nodes/idle_type/position = Vector2(-540, -540)
 nodes/in_move/node = SubResource("AnimationNodeTransition_3v2ag")
 nodes/in_move/position = Vector2(-280, -780)
 nodes/is_jumping/node = SubResource("AnimationNodeTransition_qfm1y")
-nodes/is_jumping/position = Vector2(180, -680)
+nodes/is_jumping/position = Vector2(580, -820)
 nodes/land/node = SubResource("AnimationNodeOneShot_xoqie")
 nodes/land/position = Vector2(-40, -540)
 nodes/m_state/node = SubResource("AnimationNodeTransition_xi2qa")
@@ -3439,7 +3452,7 @@ nodes/state/node = SubResource("AnimationNodeTransition_xoqie")
 nodes/state/position = Vector2(380, 40)
 nodes/walking/node = SubResource("AnimationNodeBlendSpace2D_qs0sh")
 nodes/walking/position = Vector2(-760, -1000)
-node_connections = [&"attacment", 0, &"m_state", &"gun_blend", 0, &"is_jumping", &"gun_blend", 1, &"state", &"idle_type", 0, &"Animation 5", &"idle_type", 1, &"Animation 6", &"in_move", 0, &"mouvement", &"in_move", 1, &"idle_type", &"is_jumping", 0, &"in_move", &"is_jumping", 1, &"land", &"land", 0, &"Animation 4", &"land", 1, &"Animation", &"m_state", 0, &"Animation 2", &"m_state", 1, &"Animation 3", &"mouvement", 0, &"walking", &"mouvement", 1, &"crouched", &"mouvement", 2, &"ng_running", &"output", 0, &"gun_blend", &"state", 0, &"attacment"]
+node_connections = [&"attacment", 0, &"m_state", &"double", 0, &"land", &"double", 1, &"Animation 7", &"gun_blend", 0, &"is_jumping", &"gun_blend", 1, &"state", &"idle_type", 0, &"Animation 5", &"idle_type", 1, &"Animation 6", &"in_move", 0, &"mouvement", &"in_move", 1, &"idle_type", &"is_jumping", 0, &"in_move", &"is_jumping", 1, &"double", &"land", 0, &"Animation 4", &"land", 1, &"Animation", &"m_state", 0, &"Animation 2", &"m_state", 1, &"Animation 3", &"mouvement", 0, &"walking", &"mouvement", 1, &"crouched", &"mouvement", 2, &"ng_running", &"output", 0, &"gun_blend", &"state", 0, &"attacment"]
 
 [sub_resource type="Animation" id="Animation_508es"]
 length = 0.001
@@ -3583,7 +3596,7 @@ bones/0/parent = -1
 bones/0/rest = Transform3D(0.765908, 0.11701, -0.632213, 0.0241271, 0.977377, 0.210123, 0.642497, -0.176188, 0.745758, -0.638741, 100.237, 0.595893)
 bones/0/enabled = true
 bones/0/position = Vector3(-0.639, 64.479, 0.596)
-bones/0/rotation = Quaternion(0.0821745, -0.0392886, 0.0158063, 0.995718)
+bones/0/rotation = Quaternion(-0.0314446, -0.364619, -5.1599e-05, 0.930626)
 bones/0/scale = Vector3(1, 1, 1)
 bones/0/bone_meta/extras = {
 "transformData": {
@@ -4452,7 +4465,7 @@ bones/67/parent = 65
 bones/67/rest = Transform3D(-0.489788, 0.460459, -0.740328, -0.0210551, 0.84266, 0.538035, 0.871588, 0.27911, -0.403029, 5.43874e-06, 28.3288, -5.56425e-07)
 bones/67/enabled = true
 bones/67/position = Vector3(-2.72214, 30.9284, 2.27298)
-bones/67/rotation = Quaternion(0.0348526, -0.159196, 0.0280313, -0.986233)
+bones/67/rotation = Quaternion(0.26954, 0.00844167, -0.125636, -0.954721)
 bones/67/scale = Vector3(1.00001, 0.999994, 0.999993)
 bones/67/bone_meta/extras = {
 "transformData": {
@@ -5252,13 +5265,12 @@ bones/128/rotation = Quaternion(0, 0, 0, 1)
 bones/128/scale = Vector3(1, 1, 1)
 
 [node name="weapon" type="BoneAttachment3D" parent="visuals/mixamo_base/Node/Skeleton3D"]
-transform = Transform3D(-0.515866, 0.855203, -0.0499598, 0.53938, 0.36956, 0.756628, 0.665537, 0.363372, -0.651929, 12.2262, 102.788, 21.3748)
+transform = Transform3D(-0.723048, 0.505659, 0.470638, 0.683383, 0.424092, 0.594242, 0.100891, 0.751292, -0.652203, 2.72419, 106.18, 18.3313)
 bone_name = "mixamorigRightHand"
 bone_idx = 19
 
 [node name="weapon_pivot" type="Node3D" parent="visuals/mixamo_base/Node/Skeleton3D/weapon"]
 transform = Transform3D(0.998194, -0.06004, 0.00195526, 0.0600268, 0.998177, 0.00622428, -0.0023254, -0.00609567, 0.999979, 0, 0, 0)
-visible = false
 script = ExtResource("3_dt7fs")
 
 [node name="Stalker-47" parent="visuals/mixamo_base/Node/Skeleton3D/weapon/weapon_pivot" instance=ExtResource("5_3v2ag")]
@@ -5277,7 +5289,7 @@ mesh = SubResource("ArrayMesh_ebjeq")
 skin = SubResource("Skin_wes05")
 
 [node name="ParticuleFootLeft" type="BoneAttachment3D" parent="visuals/mixamo_base/Node/Skeleton3D"]
-transform = Transform3D(-0.998794, 0.0491011, 0.000209339, -0.0254242, -0.520806, 0.853296, 0.0420068, 0.852262, 0.521426, 10.332, -2.45845, -0.349373)
+transform = Transform3D(-0.810265, -0.556297, -0.184404, 0.00403075, -0.319931, 0.947432, -0.58605, 0.766928, 0.261471, -1.72866, -1.20609, 17.5122)
 bone_name = "mixamorigLeftToeBase"
 bone_idx = 125
 
@@ -5287,7 +5299,7 @@ process_material = SubResource("ParticleProcessMaterial_kbiml")
 draw_pass_1 = SubResource("QuadMesh_fjcwx")
 
 [node name="ParticuleFootRight" type="BoneAttachment3D" parent="visuals/mixamo_base/Node/Skeleton3D"]
-transform = Transform3D(-0.999058, 0.0336608, 0.027377, 0.024916, -0.0714753, 0.997131, 0.035521, 0.996874, 0.0705692, -5.06227, -10.8717, 22.4217)
+transform = Transform3D(-0.798852, -0.587025, 0.131295, 0.0516789, 0.150485, 0.987261, -0.599304, 0.79546, -0.0898781, -28.8135, -4.0637, 26.7064)
 bone_name = "mixamorigRightToeBase"
 bone_idx = 115
 
@@ -5326,6 +5338,9 @@ parameters/attacment/current_state = "mag"
 parameters/attacment/transition_request = ""
 parameters/attacment/current_index = 0.0
 parameters/crouched/blend_position = Vector2(-0.0552486, 0.148789)
+parameters/double/active = false
+parameters/double/internal_active = false
+parameters/double/request = 0
 parameters/gun_blend/blend_amount = 0.0
 parameters/idle_type/current_state = "idle_croushed"
 parameters/idle_type/transition_request = ""
@@ -5333,9 +5348,9 @@ parameters/idle_type/current_index = 1
 parameters/in_move/current_state = "moving"
 parameters/in_move/transition_request = ""
 parameters/in_move/current_index = 0
-parameters/is_jumping/current_state = "on_floor"
+parameters/is_jumping/current_state = "jumping"
 parameters/is_jumping/transition_request = ""
-parameters/is_jumping/current_index = 0
+parameters/is_jumping/current_index = 1
 parameters/land/active = false
 parameters/land/internal_active = false
 parameters/land/request = 0

@@ -3,8 +3,10 @@ res://game/shaders/gaz.gdshader
 res://game/shaders/600000.tres
 res://game/env_test.tres
 res://game/env_test2.tres
+res://game/scripts/player/main/player.gd
 res://game/scenes/settings.tscn
 res://game/scenes/salon.tscn
 res://game/scenes/main.tscn
 res://game/scenes/weapons/guns/100001.tscn
 res://gun test.tscn
+res://game/assets/animations/used/ng_flip.res
