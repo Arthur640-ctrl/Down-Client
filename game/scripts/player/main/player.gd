@@ -32,6 +32,7 @@ extends CharacterBody3D
 var SPEED : float = 3
 var JUMP_VELOCITY : float = 4.5
 var GRAVITY : float = -9.8
+const DOUBLE_JUMP_VELOCITY : int = 8
 
 var WALKING_SPEED : float = 3  
 var RUNNING_SPEED : float = 5
@@ -53,10 +54,14 @@ var is_use_gadget : bool = false
 
 var alreday_land : bool = false
 
+var jumpHeld : bool = false
+var canJump : bool = true
+var alreadyJump : bool = false
+
 var mouvement_transition : String = "parameters/mouvement/transition_request"
 var inMove_transition : String = "parameters/in_move/transition_request"
 var walking_blend2d : String = "parameters/walking/blend_position"
-var croushed_blend2d : String = "parameters/croushed/blend_position"
+var croushed_blend2d : String = "parameters/crouched/blend_position"
 var idle_transition : String = "parameters/idle_type/transition_request"
 var croushed_timescale : String = "parameters/croushed_timescale/scale"
 var walking_timescale : String = "parameters/walking_timescale/scale"
@@ -153,11 +158,13 @@ func get_inputs():
 				is_aiming = true
 			else:
 				is_aiming = false 
-				
+	
+	is_jumping = Input.is_action_pressed("jump")
+	
 	# Update :
 	Globals.IS_CROUSHED = is_croushed
 	Globals.IS_RUNNING = is_running
-	Globals.IS_JUMPING = Input.is_action_pressed("jump")
+	Globals.IS_JUMPING = is_jumping
 	Globals.IS_SHOOTING = is_shooting
 	Globals.INV_UP = Input.is_action_just_pressed("inventory_up")
 	Globals.INV_DOWN = Input.is_action_just_pressed("inventory_down")
@@ -201,11 +208,21 @@ func _physics_process(delta: float) -> void:
 	# Mouvements
 	if Globals.PREDICTION:
 		# print(Globals.blocked)
-		if Input.is_action_just_pressed("ui_accept") and is_on_floor() and Globals.stamina > 0:
-			velocity.y = JUMP_VELOCITY
-			is_jumping = true
-		else:
-			is_jumping = false
+		if is_jumping and not jumpHeld:
+			if is_on_floor() and canJump and Globals.stamina > 10:
+				velocity.y = JUMP_VELOCITY
+				canJump = false
+				alreadyJump = false
+			elif not is_on_floor() and canJump and !alreadyJump:
+				velocity.y = DOUBLE_JUMP_VELOCITY
+				canJump = false
+				alreadyJump = true
+				animation_tree["parameters/double/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+
+		# MAJ of flags
+		jumpHeld = is_jumping
+		if not is_jumping:
+			canJump = true
 		
 		if is_on_floor():
 			if !Globals.blocked:
@@ -281,7 +298,7 @@ func update_health(value):
 func str_to_bool(value: String) -> bool:
 	var normalized = value.strip_edges().to_lower()
 	return normalized in ["true", "1", "yes", "on"]
-	
+
 func time_to_land() -> float:
 	# Retourne le temps estimé avant de toucher le sol.
 	if is_on_floor():
